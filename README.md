@@ -12,3 +12,46 @@
 
 
 ## Pipeline
+
+DIPN contains a two-branch spatial-contextual hourglass module and a discrepancy map learning hourglass module. First, the original image I and the initial reconstructed image Ro (obtained by a pre-trained e4e model) are fed into DIPN to predict the discrepancy map. Then, the discrepancy map is fed into DICN for feature compensation in both the latent code and the GAN generator.
+<img src="docs/pipeline.jpg">  
+
+## Getting Started
+### Installation
+```
+git clone https://github.com/ZzqLKED/SDIC.git
+cd SDIC
+```
+### Environment
+You can simply set up the environment by Anconda to make inference.
+```
+pip install timm
+wget https://github.com/ninja-build/ninja/releases/download/v1.8.2/ninja-linux.zip
+sudo unzip ninja-linux.zip -d /usr/local/bin/
+sudo update-alternatives --install /usr/bin/ninja ninja /usr/local/bin/ninja 1 --force
+pip install git+https://github.com/openai/CLIP.git
+```
+All dependencies for defining the environment are provided in `environment.yml`
+
+### Pretrained Models
+Please download the pre-trained models from the following links and put them in `./pretrained_models`.
+| Path | Description
+| :--- | :----------
+|[SDIC for Face](https://drive.google.com/file/d/1-IcTTzXTNq_W8pNEC5tzN-srH0uzpKEW/view?usp=sharing)  | SDIC trained on the FFHQ dataset.
+|[SDIC for Car](https://drive.google.com/file/d/1_Dfu06wuRqgFLXnc98HJv8QuBiLjrQgG/view?usp=sharing)  | SDIC trained on the LSUN dataset.
+
+The following models are needed if you want to train SDIC from scratch.
+
+| Path | Description
+| :--- | :----------
+|[FFHQ StyleGAN](https://drive.google.com/file/d/1EM87UquaoQmk17Q8d5kYIAHqu0dkYqdT/view?usp=sharing) | StyleGAN model pretrained on FFHQ taken from [rosinality](https://github.com/rosinality/stylegan2-pytorch) with 1024x1024 output resolution.
+|[LSUN car StyleGAN](https://drive.google.com/file/d/1EM87UquaoQmk17Q8d5kYIAHqu0dkYqdT/view?usp=sharing) | StyleGAN model pretrained on FFHQ taken from [rosinality](https://github.com/rosinality/stylegan2-pytorch) with 512x512 output resolution.
+|[IR-SE50 Model(for face)](https://drive.google.com/file/d/1KW7bjndL3QG3sxBbZxreGHigcCCpsDgn/view?usp=sharing) | Pretrained IR-SE50 model taken from [TreB1eN](https://github.com/TreB1eN/InsightFace_Pytorch) for ID loss calculation.
+|[ResNet-50(for car)](https://drive.google.com/file/d/18rLcNGdteX5LwT7sv_F7HWr12HpVEzVe/view?usp=sharing) | Pretrained ResNet-50 model taken from [omertov](https://github.com/omertov/encoder4editing) for ID loss calculation.
+
+- Download datasets and modify the dataset path in `./configs/paths_config.py accordingly`.
+- Download some pretrained models and put them in `./pretrained_models`.
+- If you want to train from on the LSUN dataset, note the image size and change `(18,144)` to `(16,144)` in line 210 of `models/encoders/encoders.py`.
+
+## Train
+
