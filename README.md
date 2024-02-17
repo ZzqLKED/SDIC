@@ -68,8 +68,10 @@ An example of `inference.sh` is as follows,
  --save_dir=./experiment/inference_results  /the/path/to/your/model
 ```
 We have prepared some images for you to test in `./test/face`.
+
 ## More result
 <img src="docs/more.jpg" width='800px'/>  
+
 ## Citation
 If you find this work useful for your research, please cite the following work:
 ```
