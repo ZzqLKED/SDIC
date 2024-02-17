@@ -67,4 +67,16 @@ An example of `inference.sh` is as follows,
  --images_dir=/the/path/to/your/images --n_sample=100 --edit_attribute='pose' --edit_degree=-2 \
  --save_dir=./experiment/inference_results  /the/path/to/your/model
 ```
+We have prepared some images for you to test in `./test/face`.
 ## More result
+<img src="docs/more.jpg" width='800px'/>  
+## Citation
+If you find this work useful for your research, please cite the following work:
+```
+@inproceedings{zhang2024SDIC,
+  title={Spatial-Contextual Discrepancy Information Compensation for GAN Inversion},
+  author={Zhang, Ziqiang and Yan, Yan and Xue, Jing-Hao and Wang, Hanzi},
+  booktitle = {Proceedings of the AAAI Conference on Artificial Intelligence},
+  year={2024}
+}
+```
