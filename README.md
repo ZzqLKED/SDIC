@@ -54,4 +54,4 @@ The following models are needed if you want to train SDIC from scratch.
 - If you want to train from on the LSUN dataset, note the image size and change `(18,144)` to `(16,144)` in line 210 of `models/encoders/encoders.py`.
 
 ## Train
-
+Make sure the paths to the required models, as well as training and testing data are configured in `configs/path_configs.py` and `configs/data_configs.py`.Then Modify `options/` and training.sh and run:
